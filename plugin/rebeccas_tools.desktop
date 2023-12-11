@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=rebeccas_tools
+X-Python-2-Compatible=false
+X-Krita-Manual=manual.html
+Name=Rebecca's Tools
+Comment=Small Collection of Krita Tools

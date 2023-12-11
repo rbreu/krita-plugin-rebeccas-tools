@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionCollection version="2" name="Scripts">
+    <Actions category="Scripts">
+      <text>Reorder Image Sequence</text>
+
+      <Action name="rebeccas_tools_reorder_image_sequence">
+        <icon></icon>
+        <text>Reorder Image Sequence</text>
+        <whatsThis></whatsThis>
+        <toolTip></toolTip>
+        <iconText></iconText>
+        <activationFlags>0</activationFlags>
+        <activationConditions>0</activationConditions>
+        <shortcut></shortcut>
+        <isCheckable>false</isCheckable>
+        <statusTip></statusTip>
+        </Action>
+    </Actions>
+
+    <Actions category="Scripts">
+      <text>Crop To Margins</text>
+      <Action name="rebeccas_tools_crop_to_margins">
+        <icon></icon>
+        <text>Crop To Margins</text>
+        <whatsThis></whatsThis>
+        <toolTip></toolTip>
+        <iconText></iconText>
+        <activationFlags>1</activationFlags>
+        <activationConditions>0</activationConditions>
+        <shortcut></shortcut>
+        <isCheckable>false</isCheckable>
+        <statusTip></statusTip>
+        </Action>
+    </Actions>
+</ActionCollection>
