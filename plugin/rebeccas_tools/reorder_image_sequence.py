@@ -1,4 +1,6 @@
+import glob
 import os
+
 
 START = 1
 
@@ -11,6 +13,11 @@ def reorder(folder):
     fnames = os.listdir(folder)
     fnames.sort()
     last, extension = os.path.splitext(fnames[-1])
+
+    # Sanity check: Only allow same file extensions on all files
+    pattern = os.path.join(folder, f'*{extension}')
+    assert len(fnames) == len(glob.glob(pattern)), 'Found mixed file types'
+
     last = int(last)
     prev = START
 
@@ -24,3 +31,4 @@ def reorder(folder):
             prev += 1
 
     print('Reorder Image Sequence: Done')
+    return len(fnames)

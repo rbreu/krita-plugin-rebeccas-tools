@@ -1,4 +1,5 @@
 import os
+import pytest
 from unittest.mock import MagicMock, patch
 
 
@@ -15,7 +16,7 @@ def test_reorders_jpgs(tmpdir):
     with open(os.path.join(tmpdir, '0000006.jpg'), 'w') as f:
         f.write('c')
 
-    reorder(tmpdir)
+    assert reorder(tmpdir) == 3
 
     with open(os.path.join(tmpdir, '0000001.jpg')) as f:
         assert f.read() == 'a'
@@ -40,7 +41,7 @@ def test_reorders_when_first_missing(tmpdir):
     with open(os.path.join(tmpdir, '0000004.jpg'), 'w') as f:
         f.write('c')
 
-    reorder(tmpdir)
+    assert reorder(tmpdir) == 3
 
     with open(os.path.join(tmpdir, '0000001.jpg')) as f:
         assert f.read() == 'a'
@@ -65,7 +66,7 @@ def test_reorders_pngs(tmpdir):
     with open(os.path.join(tmpdir, '0000006.png'), 'w') as f:
         f.write('c')
 
-    reorder(tmpdir)
+    assert reorder(tmpdir) == 3
 
     with open(os.path.join(tmpdir, '0000001.png')) as f:
         assert f.read() == 'a'
@@ -75,3 +76,20 @@ def test_reorders_pngs(tmpdir):
 
     with open(os.path.join(tmpdir, '0000003.png')) as f:
         assert f.read() == 'c'
+
+
+@patch.dict('sys.modules', krita=MagicMock())
+def test_assertion_error_when_mixed_file_types(tmpdir):
+    from plugin.rebeccas_tools.reorder_image_sequence import reorder
+
+    with open(os.path.join(tmpdir, '0000001.jpg'), 'w') as f:
+        f.write('a')
+
+    with open(os.path.join(tmpdir, '0000003.png'), 'w') as f:
+        f.write('b')
+
+    with open(os.path.join(tmpdir, '0000006.jpg'), 'w') as f:
+        f.write('c')
+
+    with pytest.raises(AssertionError):
+        reorder(tmpdir)

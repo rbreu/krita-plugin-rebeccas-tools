@@ -35,7 +35,12 @@ class RebeccasToolsExtension(krita.Extension):
             i18n('Krita Recorder Folder'),
             os.path.expanduser('~'),
         )
-        reorder(folder)
+        count = reorder(folder)
+        QMessageBox.information(
+            self.parent.activeWindow().qwindow(),
+            i18n('Success!'),
+            i18n(f'Reordered {count} images in folder: {folder}'))
+        return
 
     def crop_to_margins(self):
         doc = Application.activeDocument()
